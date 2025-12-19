@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações - Gestor</title>
+
+    <script>
+        (function() {
+            const darkMode = localStorage.getItem('darkMode') === 'true';
+            const fontSize = localStorage.getItem('fontSize') || '16px';
+            if (darkMode) {
+                document.documentElement.classList.add('dark-mode');
+            } else {
+                document.documentElement.classList.remove('dark-mode');
+            }
+            document.documentElement.style.fontSize = fontSize;
+        })();
+    </script>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/config.css">
+</head>
+<body>
+    <div class="config-container">
+        <header class="config-header">
+            <a href="dashboard.html" class="btn-voltar">← Voltar</a>
+            <h2>Ajustes do Sistema</h2>
+        </header>
+
+        <section class="config-card">
+            <h3>🎨 Visual</h3>
+            <div class="row">
+                <span>Modo Escuro</span>
+                <label class="switch">
+                    <input type="checkbox" id="dark-mode-input">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="row">
+                <span>Tamanho da Fonte</span>
+                <select id="font-size-input">
+                    <option value="14px">Pequena</option>
+                    <option value="16px" selected>Média (Padrão)</option>
+                    <option value="18px">Grande</option>
+                    <option value="22px">Extra Grande</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="config-card">
+            <h3>🔐 Segurança</h3>
+            <p class="sub-info">Alterar senha para: <b id="nome-usuario-config">...</b></p>
+            
+            <div class="security-fields">
+    <div class="input-group security-row">
+        <label>Nova Senha</label>
+        <input type="password" id="nova-senha-input" placeholder="Mínimo 4 caracteres">
+    </div>
+    
+    <div class="input-group security-row">
+        <label>Confirmar Nova Senha</label>
+        <input type="password" id="confirma-senha-input" placeholder="Repita a senha">
+    </div>
+    </div>
+        </section>
+
+        <button id="btn-salvar-config" class="btn-save-full">
+            Salvar Preferências Visuais
+        </button>
+    </div>
+
+    <script type="module" src="js/config.js"></script>
+</body>
+</html>

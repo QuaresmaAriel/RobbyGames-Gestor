@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso - Robby Games</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body class="dark-mode-default"> 
+    <div class="login-container">
+        <header>
+            <h1>Robby Games</h1>
+            <p>Faça login para gerenciar sua fila</p>
+        </header>
+
+        <form id="login-form">
+            <div class="input-group">
+                <label for="usuario">Usuário</label>
+                <input type="text" id="usuario" required placeholder="Nome do usuário">
+            </div>
+            
+            <div class="input-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" required placeholder="******">
+            </div>
+
+            <button type="submit" id="btn-login">Entrar</button>
+        </form>
+        <p id="login-error" class="error-msg"></p>
+    </div>
+
+    <script type="module" src="js/login.js"></script>
+</body>
+</html>

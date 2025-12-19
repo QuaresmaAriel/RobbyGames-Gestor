@@ -1,0 +1,203 @@
+/* ======================================================
+   SISTEMA DE ESTILOS GLOBAL - RobbyGames
+   Este arquivo define a identidade visual base de todo o sistema.
+   As cores e transições aqui configuradas afetam todas as páginas.
+   ====================================================== */
+
+:root {
+    /* Paleta Light Mode */
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-color: #1e293b;
+    --border-color: #e2e8f0;
+
+    /* Cores de Ação */
+    --primary-color: #2563eb;
+    --secondary-color: #64748b;
+    --success-color: #22c55e;
+    --danger-color: #ef4444;
+    --warning-color: #f59e0b;
+    --accent-color: #94a3b8;
+    
+    /* Sombras */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.05);
+}
+
+/* ======================================================
+   VARIÁVEIS DARK MODE
+   Sobrescreve as cores base quando a classe .dark-mode está ativa no HTML.
+   ====================================================== */
+html.dark-mode {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-color: #f1f5f9;
+    --border-color: #334155;
+
+    --primary-color: #3b82f6;
+    --secondary-color: #94a3b8;
+    --accent-color: #64748b;
+    
+    --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+/* ======================================================
+   RESET E BASE
+   Configurações que garantem comportamento igual em todos os navegadores.
+   ====================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+}
+
+html {
+    /* O tamanho da fonte base (16px) permite que o uso de 'rem' 
+       seja responsivo ao controle de acessibilidade do sistema. */
+    font-size: 16px; 
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1.5;
+    min-height: 100vh;
+    /* Transição suave ao trocar entre Light e Dark Mode */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Utilitário para esconder elementos (Modais, Filtros, etc) */
+.hidden {
+    display: none !important;
+}
+
+/* ======================================================
+   COMPONENTES: CARDS
+   Estrutura base para listas de tarefas e blocos de conteúdo.
+   ====================================================== */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 1rem;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+}
+
+/* Divisores internos de cards */
+.card hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 0.75rem 0;
+}
+
+/* ======================================================
+   COMPONENTES: TAGS (TIPOS DE TAREFAS)
+   As cores são ajustadas via CSS para garantir leitura em ambos os modos.
+   ====================================================== */
+.tag-tipo {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* Temas das Tags (Light Mode padrão) */
+.tag-tipo.servico    { background: #dbeafe; color: #1e40af; }
+.tag-tipo.particular { background: #fef3c7; color: #92400e; }
+.tag-tipo.agendado   { background: #d1fae5; color: #065f46; }
+
+/* Ajustes de Contraste para Dark Mode */
+html.dark-mode .tag-tipo.servico    { background: #1e3a8a; color: #dbeafe; }
+html.dark-mode .tag-tipo.particular { background: #78350f; color: #fef3c7; }
+html.dark-mode .tag-tipo.agendado   { background: #064e3b; color: #d1fae5; }
+
+/* ======================================================
+   BOTÕES GLOBAIS
+   Padronização de interações e clique.
+   ====================================================== */
+
+/* Botão Principal (Destaque) */
+.btn-primary {
+    background: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Botão de Ação Secundária / Detalhes (Ex: Ver Log) */
+.btn-action {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+/* Efeito de Hover unificado para botões interativos */
+.btn-primary:hover, .btn-action:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary:active, .btn-action:active {
+    transform: translateY(0);
+}
+/* TOAST MODERNO - ROBBYGAMES */
+.toast-moderno {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--card-bg); /* Usa a cor do seu card */
+    color: var(--text-color);   /* Usa a cor do seu texto */
+    padding: 12px 24px;
+    border-radius: 50px;       /* Formato de pílula, bem moderno */
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    z-index: 9999;
+    font-size: 0.95rem;
+    font-weight: 500;
+    white-space: nowrap;       /* Garante que não quebre linha */
+    animation: slideDown 0.2s ease forwards;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Variante de Erro */
+.toast-moderno.erro {
+    border-color: #ff4757;
+    color: #ff4757;
+}
+
+/* Dark Mode adjustment */
+html.dark-mode .toast-moderno {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+
+/* Animações */
+@keyframes slideDown {
+    from { opacity: 0; transform: translate(-50%, -20px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.toast-moderno.fade-out {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+    transition: all 0.2s ease;
+}

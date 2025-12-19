@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>404 - Erro no Retorno</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #1a1a1a; color: white; margin: 0; overflow: hidden; touch-action: none; }
+        .game-header { padding: 15px; text-align: center; }
+        #pongCanvas { 
+            display: block; 
+            margin: 0 auto; 
+            background: #000; 
+            border-top: 2px solid #ffa100; 
+            border-bottom: 2px solid #ffa100;
+            width: 100%;
+            max-width: 500px;
+        }
+        .controls-hint { font-size: 0.8rem; color: #888; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="game-header">
+    <h2 class="text-warning">Pagina não encontrada</h2>
+    <p>Enquanto isso, passe o tempo jogando.</p>
+</div>
+
+<canvas id="pongCanvas"></canvas>
+
+<div class="text-center mt-3">
+    <a href="/" class="btn btn-outline-warning btn-sm">SAIR DO JOGO</a>
+    <p class="controls-hint">Arraste para mover sua raquete</p>
+</div>
+
+<script>
+    const canvas = document.getElementById('pongCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Ajuste de tamanho responsivo
+    canvas.width = window.innerWidth > 500 ? 500 : window.innerWidth;
+    canvas.height = 300;
+
+    let score = 0;
+    const paddleWidth = 10, paddleHeight = 60;
+    let user = { x: 0, y: canvas.height/2 - paddleHeight/2, width: paddleWidth, height: paddleHeight, score: 0 };
+    let com = { x: canvas.width - paddleWidth, y: canvas.height/2 - paddleHeight/2, width: paddleWidth, height: paddleHeight, score: 0 };
+    let ball = { x: canvas.width/2, y: canvas.height/2, radius: 7, speed: 5, velocityX: 5, velocityY: 5 };
+
+    // Controle Touch e Mouse
+    function movePaddle(evt) {
+        let rect = canvas.getBoundingClientRect();
+        let clientY = evt.touches ? evt.touches[0].clientY : evt.clientY;
+        user.y = clientY - rect.top - user.height/2;
+    }
+
+    canvas.addEventListener('mousemove', movePaddle);
+    canvas.addEventListener('touchmove', (e) => {
+        movePaddle(e);
+        e.preventDefault(); // Impede o scroll da página enquanto joga
+    }, { passive: false });
+
+    function drawRect(x, y, w, h, color) {
+        ctx.fillStyle = color;
+        ctx.fillRect(x, y, w, h);
+    }
+
+    function drawCircle(x, y, r, color) {
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI*2, false);
+        ctx.closePath();
+        ctx.fill();
+    }
+
+    function collision(b, p) {
+        p.top = p.y;
+        p.bottom = p.y + p.height;
+        p.left = p.x;
+        p.right = p.x + p.width;
+
+        b.top = b.y - b.radius;
+        b.bottom = b.y + b.radius;
+        b.left = b.x - b.radius;
+        b.right = b.x + b.radius;
+
+        return b.right > p.left && b.bottom > p.top && b.left < p.right && b.top < p.bottom;
+    }
+
+    function update() {
+        ball.x += ball.velocityX;
+        ball.y += ball.velocityY;
+
+        // IA do computador (simples)
+        com.y += (ball.y - (com.y + com.height/2)) * 0.08;
+
+        if(ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+            ball.velocityY = -ball.velocityY;
+        }
+
+        let player = (ball.x < canvas.width/2) ? user : com;
+
+        if(collision(ball, player)) {
+            let collidePoint = (ball.y - (player.y + player.height/2));
+            collidePoint = collidePoint / (player.height/2);
+            let angleRad = (Math.PI/4) * collidePoint;
+            let direction = (ball.x < canvas.width/2) ? 1 : -1;
+            ball.velocityX = direction * ball.speed * Math.cos(angleRad);
+            ball.velocityY = ball.speed * Math.sin(angleRad);
+            ball.speed += 0.2;
+        }
+
+        // Marcar ponto
+        if(ball.x - ball.radius < 0 || ball.x + ball.radius > canvas.width) {
+            ball.x = canvas.width/2;
+            ball.y = canvas.height/2;
+            ball.speed = 5;
+            ball.velocityX = -ball.velocityX;
+        }
+    }
+
+    function render() {
+        drawRect(0, 0, canvas.width, canvas.height, "#000");
+        drawRect(user.x, user.y, user.width, user.height, "#ffa100");
+        drawRect(com.x, com.y, com.width, com.height, "#fff");
+        drawCircle(ball.x, ball.y, ball.radius, "#fff");
+    }
+
+    function game() {
+        update();
+        render();
+    }
+
+    setInterval(game, 1000/50);
+</script>
+</body>
+</html>

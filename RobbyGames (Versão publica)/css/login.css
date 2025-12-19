@@ -1,0 +1,127 @@
+/* ======================================================
+   ESTILO DE AUTENTICAÇÃO (LOGIN) - RobbyGames
+   Este arquivo gerencia a tela de entrada do sistema.
+   Totalmente integrado ao Tema Global (Light/Dark Mode).
+   ====================================================== */
+
+/* --- CENTRALIZAÇÃO TOTAL DA TELA --- */
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Usa as cores globais para suportar o Dark Mode */
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease;
+}
+
+/* --- CONTAINER DO LOGIN --- */
+.login-container {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 18px; /* Combinando com os cards do sistema */
+    box-shadow: var(--shadow-md);
+    width: 100%;
+    max-width: 400px; /* Limite para não esticar em monitores grandes */
+    text-align: center;
+    border: 1px solid var(--border-color);
+    transition: background 0.3s ease, border 0.3s ease;
+}
+
+/* --- CABEÇALHO (TÍTULOS) --- */
+header h1 {
+    color: var(--primary-color);
+    margin-bottom: 0.65rem;
+    font-size: 1.5rem;
+}
+
+header p {
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+    font-size: 0.875rem;
+}
+
+/* --- CAMPOS DE ENTRADA (INPUTS) --- */
+.input-group {
+    text-align: left;
+    margin-bottom: 1.25rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 1rem;
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+}
+
+/* Destaque ao focar no campo */
+.input-group input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* --- BOTÃO ENTRAR (PADRÃO PÍLULA) --- */
+#btn-login {
+    width: 100%;
+    padding: 0.85rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50px; /* Unificado com o padrão visual do sistema */
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 0.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+#btn-login:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+#btn-login:active {
+    transform: translateY(0);
+}
+
+/* --- MENSAGENS DE FEEDBACK --- */
+.error-msg {
+    color: var(--danger-color);
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    min-height: 1.2rem;
+    font-weight: 500;
+}
+
+/* --- AJUSTE RESPONSIVO (MOBILE) --- */
+@media (max-width: 480px) {
+    body {
+        /* No celular, o fundo acompanha o card para preencher a tela */
+        background-color: var(--card-bg);
+        align-items: flex-start; 
+        padding-top: 3rem;
+    }
+    
+    .login-container {
+        box-shadow: none; 
+        border: none;
+        max-width: 100%;
+        padding: 1.5rem;
+    }
+}

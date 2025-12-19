@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar - Gestor</title>
+
+    <script>
+        (function() {
+            // Recupera o estado do modo escuro e o tamanho da fonte salvos no sistema
+            const darkMode = localStorage.getItem('darkMode') === 'true';
+            const fontSize = localStorage.getItem('fontSize') || '16px';
+            
+            // Aplica a classe de estilo no HTML antes do corpo (body) ser desenhado
+            if (darkMode) {
+                document.documentElement.classList.add('dark-mode');
+            } else {
+                document.documentElement.classList.remove('dark-mode');
+            }
+            
+            // Define a escala de leitura global
+            document.documentElement.style.fontSize = fontSize;
+        })();
+    </script>
+
+    <link rel="stylesheet" href="css/style.css"> <link rel="stylesheet" href="css/forms.css"> </head>
+<body>
+    <div class="form-container">
+        
+        <header class="form-header">
+            <a href="dashboard.html" class="btn-back">← Voltar</a>
+            <h2>Agendar para o Futuro</h2>
+        </header>
+
+        <form id="form-agendar">
+            
+            <div class="input-group">
+                <label>Data do Compromisso</label>
+                <input type="date" id="agenda-data" required>
+            </div>
+
+            <div class="input-group">
+                <label>O que será feito?</label>
+                <input type="text" id="agenda-titulo" placeholder="Ex: Aniversário de casamento" required>
+            </div>
+
+            <div class="input-group">
+                <label>Observações</label>
+                <textarea id="agenda-notas" rows="3" placeholder="Ex: Fechar a loja mais cedo"></textarea>
+            </div>
+
+            <div class="info-box">
+                <p>💡 Este item só aparecerá na sua fila principal no dia agendado.</p>
+            </div>
+
+            <button type="submit" class="btn-save" style="background: #10b981;">Confirmar Agendamento</button>
+        </form>
+    </div>
+
+    <script type="module" src="js/formularios.js"></script>
+</body>
+</html>

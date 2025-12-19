@@ -1,0 +1,236 @@
+/* ======================================================
+   SISTEMA DE HISTÓRICO - RobbyGames
+   Este arquivo gerencia a tabela de registros concluídos e os modais.
+   ====================================================== */
+
+/* --- HEADER E CONTAINER --- */
+.main-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.main-header h2 { font-size: 1.4rem; }
+
+.main-header .btn-back {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.historico-container {
+    max-width: 1200px;
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+}
+
+/* --- BARRA DE BUSCA --- */
+.search-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.search-actions input {
+    flex: 1;
+    min-width: 220px;
+    padding: 0.75rem 0.9rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-color);
+    outline: none;
+}
+
+/* ======================================================
+   ESTILIZAÇÃO UNIFICADA DE BOTÕES (PADRÃO PÍLULA)
+   Garante que todos os botões interativos sigam a mesma estética moderna.
+   ====================================================== */
+
+/* Base Coletiva: Aplica o formato arredondado e transições a todos de uma vez */
+.btn-excel, .btn-danger, .btn-detalhes, .btn-secondary, 
+#modal-log-close, #confirm-yes, #confirm-no {
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+/* 1. Botões Superiores (Tamanho Padrão) */
+.btn-excel { background: #16a34a; color: #fff; padding: 0.75rem 1.2rem; }
+.btn-danger { background: var(--danger-color); color: #fff; padding: 0.75rem 1.2rem; }
+
+/* 2. Botão da Tabela (Compacto) */
+.btn-detalhes {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+    box-shadow: var(--shadow-sm);
+}
+
+/* 3. Botões de Neutros/Cancelamento (Cinza) */
+.btn-secondary, #modal-log-close, #confirm-no {
+    background: var(--secondary-color);
+    color: #fff;
+    padding: 0.7rem 1.5rem;
+}
+
+/* 4. Botão de Exclusão no Modal (Vermelho) */
+#confirm-yes {
+    background: var(--danger-color);
+    color: #fff;
+    padding: 0.7rem 1.5rem;
+}
+
+/* Efeitos Visuais ao passar o mouse */
+.btn-excel:hover, .btn-danger:hover, .btn-detalhes:hover, 
+.btn-secondary:hover, #modal-log-close:hover, 
+#confirm-yes:hover, #confirm-no:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* --- TABELA DINÂMICA --- */
+.table-responsive { overflow-x: auto; }
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+thead th {
+    text-align: left;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--secondary-color);
+    padding: 0 0.75rem;
+}
+
+tbody tr {
+    background: var(--card-bg);
+    box-shadow: var(--shadow-sm);
+}
+
+tbody td {
+    padding: 0.75rem;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+tbody tr td:first-child { border-radius: 12px 0 0 12px; border-left: 1px solid var(--border-color); }
+tbody tr td:last-child { border-radius: 0 12px 12px 0; border-right: 1px solid var(--border-color); }
+
+/* --- RESPONSIVIDADE MOBILE --- */
+@media (max-width: 768px) {
+    thead { display: none; }
+    tbody tr { display: block; margin-bottom: 1rem; border-radius: 12px; border: 1px solid var(--border-color); }
+    tbody td { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; border: none; border-bottom: 1px solid var(--border-color); }
+    tbody td::before { content: attr(data-label); font-weight: 600; color: var(--secondary-color); font-size: 0.8rem; }
+    tbody tr td:last-child { border-bottom: none; justify-content: center; }
+}
+
+/* --- MODAIS E LOGS --- */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.modal-content {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+#modal-log-content {
+    max-height: 50vh;
+    overflow-y: auto;
+    margin: 1rem 0;
+    text-align: left;
+}
+
+.log-item {
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--bg-color);
+    margin-bottom: 0.5rem;
+}
+
+.confirm-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.observacao {
+    margin-top: 0.5rem;
+    font-style: italic;
+    font-size: 0.85rem;
+    border-top: 1px dashed var(--border-color);
+    padding-top: 0.5rem;
+}
+
+#modal-log-content::-webkit-scrollbar { width: 5px; }
+#modal-log-content::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    border-radius: 10px;
+}.timeline-area {
+    color: var(--text-color);
+}
+
+.timeline-list {
+    color: inherit;
+}
+
+.timeline-list * {
+    color: inherit;
+}
+
+/* --- CONFIGURAÇÃO PARA DESKTOP (Horizontal) --- */
+@media (min-width: 1024px) {
+    /* Esconde a coluna responsável para dar espaço à nota */
+    .coluna-responsavel {
+        display: none;
+    }
+    
+    /* Garante que a nota use o espaço que sobrou mas não quebre o layout */
+    .coluna-nota {
+        font-size: 0.85rem;
+        color: #666;
+        white-space: normal !important; /* Permite que o texto use várias linhas */
+        overflow: visible !important;   /* Mostra o texto todo */
+        font-size: 0.9rem;
+        display: block;
+        padding: 5px 0;
+    }
+}
+
+/* --- CONFIGURAÇÃO PARA MOBILE (Vertical) --- */
+@media (max-width: 1023px) {
+    /* Mostra o responsável no mobile (já que é vertical, tem espaço) */
+    .coluna-responsavel {
+        display: block; 
+    }
+}

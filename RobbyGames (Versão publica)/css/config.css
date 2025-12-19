@@ -1,0 +1,328 @@
+/* ======================================================
+   CONTAINER
+   ====================================================== */
+.config-container {
+    max-width: 720px;
+    margin: 30px auto;
+    padding: 0 16px;
+}
+
+/* ======================================================
+   HEADER
+   ====================================================== */
+.config-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.config-header h2 {
+    font-size: 1.5rem;
+}
+
+.btn-voltar {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* ======================================================
+   CARDS DE CONFIGURAÇÃO
+   ====================================================== */
+.config-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 20px 22px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    transition: background 0.3s ease, border 0.3s ease;
+}
+
+html.dark-mode .config-card {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+}
+
+.config-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+}
+
+/* ======================================================
+   LINHAS DE OPÇÕES
+   ====================================================== */
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.row:last-child {
+    border-bottom: none;
+}
+
+.row span {
+    font-weight: 500;
+}
+
+/* ======================================================
+   SELECT
+   ====================================================== */
+.row select {
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+/* ======================================================
+   SWITCH (DARK MODE)
+   ====================================================== */
+.switch {
+    position: relative;
+    width: 48px;
+    height: 26px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    inset: 0;
+    background-color: var(--border-color);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.25s;
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    top: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.25s;
+}
+
+/* Ligado */
+.switch input:checked + .slider {
+    background-color: var(--primary-color);
+}
+
+.switch input:checked + .slider::before {
+    transform: translateX(22px);
+}
+
+
+/* ======================================================
+   BOTÃO SALVAR
+   ====================================================== */
+.btn-save-full {
+    width: 100%;
+    margin-top: 10px;
+    padding: 14px;
+    border-radius: 14px;
+    border: none;
+    background: var(--primary-color);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-save-full:hover {
+    opacity: 0.9;
+    transform: scale(1.01);
+}
+/* Container dos campos de segurança */
+.security-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaço entre as linhas de input */
+    margin-top: 10px;
+}
+
+/* Alinhamento de cada linha */
+.security-row {
+    display: flex;
+    align-items: center; /* Alinha o texto com o centro do input */
+    gap: 10px;
+}
+
+/* Define que toda label de segurança terá o mesmo tamanho */
+.security-row label {
+    width: 160px; /* Ajuste conforme o maior texto */
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Faz o input ocupar o restante do espaço e ficar padronizado */
+.security-row input {
+    flex: 1; /* Ocupa o resto da largura da div */
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-color);
+    outline: none;
+}
+
+/* Foco no input para melhor UX */
+.security-row input:focus {
+    border-color: var(--primary-color);
+}
+
+/* ======================================================
+   CAMPOS DE GESTÃO (MODAL / DASHBOARD)
+   ====================================================== */
+
+/* Padroniza tanto o Select quanto a Textarea */
+.modern-select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-size: 16px;
+    min-height: 48px;
+}
+
+/* Foco para manter o padrão UX dos campos de segurança */
+.modern-input:focus {
+    border-color: var(--primary-color);
+}
+
+/* Ajuste específico para a Caixa de Nota crescer */
+textarea.modern-input {
+    min-height: 120px; /* Tamanho confortável para digitar observações */
+    resize: vertical;  /* Permite que você ajuste manualmente se precisar */
+    line-height: 1.5;
+    font-family: inherit; /* Mantém a fonte do sistema */
+}
+
+/* Espaçamento entre os títulos e os campos no modal */
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-color);
+    display: block;
+}
+/* ======================================================
+   AJUSTE DO SELETOR DE STATUS (DASHBOARD)
+   ====================================================== */
+
+   
+#novo-status-select {  /* <--- Adicione isso aqui */
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-size: 0.9rem;
+    width: auto; /* Para ele não forçar 100% se os outros não forem */
+
+    
+    /* Remove a seta padrão do sistema que às vezes trava o tamanho */
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    
+    /* Adiciona uma setinha personalizada (opcional, mas ajuda o visual) */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 18px;
+}
+
+/* Ajuste específico para Mobile (se quiser que ele seja ainda maior no celular) */
+@media (max-width: 768px) {
+    #novo-status-select.modern-input {
+        height: 60px; /* Caixa de status bem grande no mobile */
+        font-size: 16px;
+    }
+}/* Container do modal */
+/* Seus seletores de container já existentes */
+#modal-container,
+#modal-body,
+.detalhes-container {
+  font-size: 1rem;
+  max-width: 100%;
+  padding: 1em;
+  box-sizing: border-box;
+}
+
+/* --- ADICIONE DAQUI PARA BAIXO --- */
+
+/* Estiliza o Select de Status para ter tamanho mínimo e seguir o padrão Dark Mode */
+#novo-status-select {
+  width: 100%;             /* Ocupa a largura do container */
+  min-height: 45px;        /* TAMANHO MÍNIMO de altura para facilitar o toque */
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-size: 0.95rem;
+  outline: none;
+}
+
+/* Estiliza a Textarea para ser proporcional e respeitar o padrão */
+#nota-status {
+  width: 100%;
+  min-height: 120px;       /* TAMANHO MÍNIMO para a caixa de notas */
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: inherit;
+  resize: vertical;        /* Permite ajustar se precisar de mais espaço */
+}
+
+/* Inputs e selects */
+.detalhes-container select,
+.detalhes-container textarea,
+.detalhes-container input {
+  font-size: 1em;          /* escala com o container */
+  width: 100%;             /* ocupa todo espaço disponível */
+  padding: 0.75em;
+  box-sizing: border-box;
+}
+
+/* Títulos e timeline */
+.detalhes-container h3 {
+  font-size: 1.4em;
+}
+.detalhes-container h4 {
+  font-size: 1.2em;
+}
+.timeline-list li {
+  font-size: 1em;
+}
+
+/* Botões */
+.detalhes-container .btn-primary {
+  font-size: 1em;
+  padding: 0.75em;
+  width: 100%;
+}

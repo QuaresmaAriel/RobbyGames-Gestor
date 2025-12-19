@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robby Games - Dashboard</title>
+
+    <script>
+        (function() {
+            const darkMode = localStorage.getItem('darkMode') === 'true';
+            const fontSize = localStorage.getItem('fontSize') || '16px';
+            if (darkMode) document.documentElement.classList.add('dark-mode');
+            document.documentElement.style.fontSize = fontSize;
+        })();
+    </script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body> 
+    <header class="main-header">
+        <div class="header-content">
+            <h1>Robby <span>Games</span></h1>
+            <a href="configuracoes.html" class="user-pill">
+                <span id="user-name">Configurações</span>
+                <span class="config-icon">⚙️</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+        <section class="actions-bar">
+            <a href="incluir-servico.html" class="action-btn">🛠️ <span>Serviço</span></a>
+            <a href="incluir-tarefa.html" class="action-btn">📝 <span>Tarefa</span></a>
+            <a href="agendar.html" class="action-btn">📅 <span>Agendar</span></a>
+            <a href="historico.html" class="action-btn">📜 <span>Histórico</span></a>
+        </section>
+
+        <section class="toolbar">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Pesquisar cliente, OS ou tarefa...">
+            </div>
+            
+            <div class="filter-group">
+                <button class="filter-btn active" data-filter="todos">Todos</button>
+                <button class="filter-btn" data-filter="servico">Serviços</button>
+                <button class="filter-btn" data-filter="particular">Particulares</button>
+                <button class="filter-btn" data-filter="agendado">Agendados</button>
+            </div>
+        </section>
+
+        <div class="dashboard-grid">
+            <section id="lista-tarefas" class="cards-container">
+                <div id="loading-spinner" class="status-info">Buscando tarefas...</div>
+            </section>
+
+            <aside id="painel-detalhes-fixo" class="sidebar-details">
+                <div id="conteudo-detalhes">
+                    <div class="empty-state-side">
+                        <p>Clique em um card para gerenciar</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <div id="modal-container" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button onclick="fecharModal()" class="btn-close">&times;</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>

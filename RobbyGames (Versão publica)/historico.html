@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico Completo</title>
+
+    <script>
+        (function() {
+            const darkMode = localStorage.getItem('darkMode') === 'true';
+            const fontSize = localStorage.getItem('fontSize') || '16px';
+            if (darkMode) {
+                document.documentElement.classList.add('dark-mode');
+            } else {
+                document.documentElement.classList.remove('dark-mode');
+            }
+            document.documentElement.style.fontSize = fontSize;
+        })();
+    </script>
+
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/historico.css">
+</head>
+<body>
+    <header class="main-header">
+        <a href="dashboard.html" class="btn-back">← Voltar</a>
+        <h2>Histórico de Concluídos</h2>
+    </header>
+
+    <main class="historico-container">
+        <div class="search-actions">
+            <input type="text" id="search-historico" placeholder="Buscar por nome, OS ou técnico...">
+            <button id="btn-exportar" class="btn-excel">📊 Exportar Excel</button>
+            <button id="btn-limpar-historico" class="btn-danger">🗑️ Limpar Tudo</button>
+        </div>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Tipo</th>
+                        <th>Identificação</th>
+                        <th>Último Status</th>
+                        <th>Observação</th>
+                        <th>Responsável</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-historico">
+                    <tr>
+                        <td colspan="6" style="text-align:center;">Nenhum item concluído ainda.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    
+
+    <script src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/xlsx.full.min.js"></script>
+    <script type="module" src="js/historico.js"></script>
+
+    <div id="custom-confirm" class="modal-overlay hidden">
+    <div class="modal-content confirm-box">
+        <h3 id="confirm-title">Atenção</h3>
+        <p id="confirm-msg">Deseja prosseguir com esta ação?</p>
+        <div class="confirm-buttons">
+            <button id="confirm-yes" class="btn-danger">Sim, tenho certeza</button>
+            <button id="confirm-no" class="btn-secondary">Não, cancelar</button>
+        </div>
+    </div>
+</div>
+<!-- Modal de Histórico -->
+<div id="modal-log" class="modal-overlay hidden">
+  <div class="modal-content">
+    <h3>Trajeto Completo</h3>
+    <div id="modal-log-content" class="log-grid"></div>
+    <div style="margin-top: 16px; text-align: right;">
+      <button id="modal-log-close" class="btn btn-detalhes">Fechar</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,166 @@
+/* ======================================================
+   SISTEMA DE FORMULÁRIOS - RobbyGames
+   Este arquivo gerencia a aparência de todos os inputs e caixas de cadastro.
+   Totalmente integrado com as variáveis do style.css.
+   ====================================================== */
+
+/* --- CONTAINER DO FORMULÁRIO --- */
+.form-container {
+    max-width: 600px;
+    margin: 1.25rem auto;
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+    /* Transições suaves para mudança de tema */
+    transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+/* --- CABEÇALHO DO FORMULÁRIO --- */
+.form-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+/* Link de voltar interno ao formulário */
+.btn-back {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: bold;
+    transition: opacity 0.2s;
+}
+
+.btn-back:hover {
+    opacity: 0.7;
+}
+
+/* --- GRUPOS DE ENTRADA (INPUTS) --- */
+.input-group {
+    margin-bottom: 1.15rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: var(--text-color);
+}
+
+/* --- GRUPOS DE ENTRADA (INPUTS) --- */
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    min-width: 0;
+    padding: 0.75rem;
+    box-sizing: border-box;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 1rem;
+    background: var(--bg-color);
+    color: var(--text-color);
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+/* Estilização do texto de sugestão (Placeholder) */
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+    color: var(--accent-color);
+    opacity: 0.7;
+}
+
+/* Destaque ao clicar no campo (Focus) */
+.input-group input:focus,
+.input-group textarea:focus {
+    border-color: var(--primary-color);
+}
+
+/* --- GRID DE COLUNAS --- 
+   Utilizado para colocar dois inputs na mesma linha (Ex: Data e Valor)
+*/
+.grid-2-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+/* --- BOTÃO DE SALVAR (PADRÃO PÍLULA) --- */
+.btn-save {
+    width: 100%;
+    padding: 1rem;
+    background: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 50px; /* Unificado com o padrão do sistema */
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 0.65rem;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-save:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-save:active {
+    transform: translateY(0);
+}
+
+/* --- CAIXA DE INFORMAÇÃO / DICAS --- */
+.info-box {
+    background: #ecfdf5; /* Verde claro (Sucesso) */
+    border-left: 4px solid #10b981;
+    padding: 0.75rem;
+    margin-bottom: 1.25rem;
+    border-radius: 6px;
+}
+
+.info-box p {
+    font-size: 0.8rem;
+    color: #065f46;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Ajuste da Info Box para Dark Mode */
+html.dark-mode .info-box {
+    background: #064e3b;
+    border-left-color: #34d399;
+}
+
+html.dark-mode .info-box p {
+    color: #d1fae5;
+}
+
+/* --- AJUSTES ESPECÍFICOS --- */
+input[type="date"] {
+    cursor: pointer;
+    font-family: inherit;
+    padding-right: 0.5rem;
+}
+
+
+/* --- RESPONSIVIDADE (MOBILE) --- */
+@media (max-width: 480px) {
+    /* Quebra o grid de 2 colunas para 1 coluna em telas pequenas */
+    .grid-2-col {
+        grid-template-columns: 1fr;
+                font-size: 16px; /* evita zoom e desalinhamento no mobile */
+    }
+
+    .form-container {
+        margin: 0.65rem;
+        padding: 1.15rem;
+    }
+}

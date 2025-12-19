@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Tarefa - Gestor</title>
+
+    <script>
+        (function() {
+            const darkMode = localStorage.getItem('darkMode') === 'true';
+            const fontSize = localStorage.getItem('fontSize') || '16px';
+            if (darkMode) {
+                document.documentElement.classList.add('dark-mode');
+            } else {
+                document.documentElement.classList.remove('dark-mode');
+            }
+            document.documentElement.style.fontSize = fontSize;
+        })();
+    </script>
+
+    <script>
+        (function() {
+            const darkMode = localStorage.getItem('darkMode') === 'true';
+            const fontSize = localStorage.getItem('fontSize') || '16px';
+            if (darkMode) {
+                document.documentElement.classList.add('dark-mode');
+            } else {
+                document.documentElement.classList.remove('dark-mode');
+            }
+            document.documentElement.style.fontSize = fontSize;
+        })();
+    </script>
+
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/forms.css">
+</head>
+<body>
+    <div class="form-container">
+        <header class="form-header">
+            <a href="dashboard.html" class="btn-back">← Voltar</a>
+            <h2>Lembrete / Particular</h2>
+        </header>
+
+        <form id="form-tarefa">
+            <div class="input-group">
+                <label>O que precisa fazer?</label>
+                <input type="text" id="tarefa-titulo" placeholder="Ex: Ir no fornecedor" required>
+            </div>
+
+            <div class="input-group">
+                <label>Detalhes adicionais (Opcional)</label>
+                <textarea id="tarefa-notas" rows="4" placeholder="EX: Verificar quais peças preciso"></textarea>
+            </div>
+
+            <button type="submit" class="btn-save">Salvar Tarefa</button>
+        </form>
+    </div>
+    <script type="module" src="js/formularios.js">
+    </script>
+</body>
+</html>
