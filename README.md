@@ -5,25 +5,17 @@ Um sistema de gestão de tarefas e Ordens de Serviço (OS) em tempo real, desenv
 🚀 Funcionalidades
 
 • Gestão de OS em Tempo Real: Criação, edição e acompanhamento de ordens de serviço com atualização instantânea.
-
 • Controle de Status: Fluxo de trabalho para monitorar o progresso de cada tarefa.
-
 • Histórico de Logs: Registro detalhado das movimentações e alterações em cada OS para auditoria e controle.
-
 • Autenticação de Usuários: Acesso restrito e seguro para os colaboradores.
-
 • Interface Responsiva: Desenvolvida para funcionar bem tanto em desktops quanto em dispositivos móveis.
 
 🛠️ Tecnologias Utilizadas
 
 • Linguagem: JavaScript (Vanilla)
-
 • Backend as a Service (BaaS): Firebase
-
 • Firestore: Banco de dados NoSQL para sincronização em tempo real.
-
 • Firebase Auth: Gerenciamento de autenticação e segurança.
-
 • Frontend: HTML5 e CSS3 (Design limpo e focado na usabilidade).
 
 🏗️ Arquitetura
