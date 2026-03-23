@@ -1,22 +1,32 @@
-RobbyGames - Gestor de Ordens de Serviço (OS)
+# 🛠️ RobbyGames - Gestor de Ordens de Serviço
 
-Um sistema de gestão de tarefas e Ordens de Serviço (OS) em tempo real, desenvolvido como uma solução Serverless para uma loja de manutenção. O foco principal do projeto é a agilidade no acompanhamento de serviços e a simplicidade de uso, atendendo a requisitos específicos de fluxo de trabalho do cliente.
+![GitHub repo size](https://img.shields.io/github/repo-size/QuaresmaAriel/RobbyGames-Gestor?style=for-the-badge)
+![GitHub language count](https://img.shields.io/github/languages/count/QuaresmaAriel/RobbyGames-Gestor?style=for-the-badge)
 
-🚀 Funcionalidades
+Sistema de gestão de **Ordens de Serviço (OS)** e tarefas em tempo real, desenvolvido para otimizar o fluxo de trabalho de uma loja de manutenção. A aplicação foca em simplicidade e agilidade, permitindo o acompanhamento do status de cada serviço desde a entrada até a entrega.
 
-• Gestão de OS em Tempo Real: Criação, edição e acompanhamento de ordens de serviço com atualização instantânea.
-• Controle de Status: Fluxo de trabalho para monitorar o progresso de cada tarefa.
-• Histórico de Logs: Registro detalhado das movimentações e alterações em cada OS para auditoria e controle.
-• Autenticação de Usuários: Acesso restrito e seguro para os colaboradores.
-• Interface Responsiva: Desenvolvida para funcionar bem tanto em desktops quanto em dispositivos móveis.
+---
 
-🛠️ Tecnologias Utilizadas
+### 📋 Funcionalidades Principais
 
-• Linguagem: JavaScript (Vanilla)
-• Backend as a Service (BaaS): Firebase
-• Firestore: Banco de dados NoSQL para sincronização em tempo real.
-• Firebase Auth: Gerenciamento de autenticação e segurança.
-• Frontend: HTML5 e CSS3 (Design limpo e focado na usabilidade).
+- **Gestão de OS:** Criação e monitoramento de ordens de serviço de forma intuitiva.
+- **Sincronização em Tempo Real:** Atualizações imediatas na interface conforme os dados mudam no banco.
+- **Controle de Status:** Histórico e logs de alterações para cada tarefa.
+- **Autenticação:** Acesso seguro via Firebase Auth.
+- **Arquitetura Serverless:** Sem necessidade de backend complexo, rodando diretamente com serviços na nuvem.
 
-🏗️ Arquitetura
-O projeto utiliza uma abordagem Serverless, o que elimina a necessidade de gerenciar servidores físicos ou virtuais. Toda a lógica de persistência e regras de segurança de dados são gerenciadas diretamente através das Security Rules do Firebase, garantindo uma aplicação escalável e de baixo custo de manutenção.
+### 💻 Tecnologias Utilizadas
+
+O projeto utiliza uma stack moderna e leve para garantir performance:
+
+* **Frontend:** JavaScript Vanilla (ES6+), HTML5 e CSS3.
+* **Backend & DB:** [Firebase](https://firebase.google.com/) (Firestore & Authentication).
+* **Estilização:** Layout responsivo focado em produtividade.
+
+### ⚙️ Configuração e Instalação
+
+Como o projeto é **Serverless**, você só precisa de um servidor estático ou rodar localmente:
+
+1. **Clone o repositório:**
+   ```bash
+   git clone [https://github.com/QuaresmaAriel/RobbyGames-Gestor.git](https://github.com/QuaresmaAriel/RobbyGames-Gestor.git)
